@@ -239,11 +239,11 @@ describe "Cell" do
     end
   end
 
-  describe'#update_status(status)' do
+  describe'#status=' do
     it 'statusを更新する' do
       alive_cell = Cell.new('alive')
       alive_cell.status.should == 'alive'
-      alive_cell.update_status('dead')
+      alive_cell.status = 'dead'
       alive_cell.status.should == 'dead'
     end
   end

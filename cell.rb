@@ -1,4 +1,6 @@
 class Cell
+  attr_accessor :status
+
   ALIVE_STATUS = 'alive'
   DEAD_STATUS =  'dead'
 
@@ -6,10 +8,6 @@ class Cell
     @status = status
     @adjoins = []
     self
-  end
-
-  def status
-    @status
   end
 
   def next_status
@@ -35,12 +33,8 @@ class Cell
     ''
   end
 
-  def update_status(status)
-    @status = status
-  end
-
   def next
-    self.update_status(self.next_status)
+    self.status = self.next_status
   end
 
   def adjoins
