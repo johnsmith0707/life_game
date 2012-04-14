@@ -6,25 +6,25 @@ class Cell
 
   def initialize(status)
     @status = status
-    @adjoins = []
+    @neighbourhood = []
     self
   end
 
   def next_status
     if self.alive?
-      if self.alive_adjoins.count == 0
+      if self.alive_neighbourhood.count == 0
         return DEAD_STATUS
-      elsif self.alive_adjoins.count == 1
+      elsif self.alive_neighbourhood.count == 1
         return DEAD_STATUS
-      elsif self.alive_adjoins.count == 2
+      elsif self.alive_neighbourhood.count == 2
         return ALIVE_STATUS
-      elsif self.alive_adjoins.count == 3
+      elsif self.alive_neighbourhood.count == 3
         return ALIVE_STATUS
-      elsif self.alive_adjoins.count >= 4
+      elsif self.alive_neighbourhood.count >= 4
         return DEAD_STATUS
       end
     elsif self.dead?
-      if self. alive_adjoins.count == 3
+      if self. alive_neighbourhood.count == 3
         return ALIVE_STATUS
       else
         return self.status
@@ -37,17 +37,17 @@ class Cell
     self.status = self.next_status
   end
 
-  def adjoins
-    @adjoins
+  def neighbourhood
+    @neighbourhood
   end
 
-  def alive_adjoins
-    self.adjoins.select {|c| c.alive? }
+  def alive_neighbourhood
+    self.neighbourhood.select {|c| c.alive? }
   end
 
-  def adjoin(cell)
-    if self.adjoins.count < 8
-      @adjoins.push(cell) and return true
+  def add_neighbourhood(cell)
+    if self.neighbourhood.count < 8
+      @neighbourhood.push(cell) and return true
     else
       false
     end
