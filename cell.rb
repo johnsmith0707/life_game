@@ -1,5 +1,6 @@
 class Cell
   attr_accessor :status
+  attr_reader :neighbourhood
 
   ALIVE_STATUS = 'alive'
   DEAD_STATUS =  'dead'
@@ -35,10 +36,6 @@ class Cell
 
   def next
     self.status = self.next_status
-  end
-
-  def neighbourhood
-    @neighbourhood
   end
 
   def alive_neighbourhood
